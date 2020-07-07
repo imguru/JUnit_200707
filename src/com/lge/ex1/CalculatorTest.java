@@ -79,7 +79,7 @@ public class CalculatorTest {
         */
         // xUnit Test Framework은 가정이 성립되었는지 여부를 검증하는 목적으로
         // Assertion 메소드를 제공해주고 있습니다.
-        assertEquals(4, calculator.getValue());
+        assertEquals("2 + 2 하였을 때",4, calculator.getValue());
     }
 
 }
