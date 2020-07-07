@@ -57,7 +57,6 @@ public class ParamTest {
         this.result = result;
     }
 
-
     @Parameterized.Parameters(name = "{index}, value={0}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
