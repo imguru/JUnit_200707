@@ -18,6 +18,7 @@ public class Calculator {
     }
 
     public int getValue() {
-        return value;
+        return 0;
+        // return value;
     }
 }
