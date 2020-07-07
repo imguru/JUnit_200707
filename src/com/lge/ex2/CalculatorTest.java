@@ -32,7 +32,7 @@ import static org.junit.Assert.assertEquals;
 // 4. 복합 설치
 //    : 암묵적 설치와 위임 설치를 같이 적절하게 혼합해서 사용하는 방법
 
-// * 테스트 러너(Test Runner) - 신선한 픽스쳐 전략
+// * 테스트 러너(Test Runner) - '신선한 픽스쳐 전략'
 // CalculatorTest ts = new CalculatorTest();
 // ts.setUp();  - 비메모리 자원을 생성한다. / 명시적인 종료 메소드를 통해 자원을 해지해주어야 한다.
 //                테스트가 종료될 때, 테스트 픽스쳐를 해체해서, 테스트 시작 이전의 상태로 복원해야 한다.
@@ -43,6 +43,13 @@ import static org.junit.Assert.assertEquals;
 // ts.setUp();
 // ts.testAdd();
 // ts.tearDown();
+
+// * xUnit Test Pattern에서 테스트를 구성하는 방법
+// : Four Phase Test Pattern(4단계 테스트 패턴)
+// 1단계: 픽스쳐를 설치하거나, 관찰하기 위해 필요한 것을 설정하는 작업   - @Before
+// 2단계: SUT와 상호작용한다.
+// 3단계: 기대 결과가 나왔는지 확인한다.
+// 4단계: 픽스쳐를 해체해서, 테스트 이전 상태로 되돌려 놓는다.        - @After
 
 
 public class CalculatorTest {
