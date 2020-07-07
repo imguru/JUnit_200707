@@ -76,7 +76,7 @@ public class CalculatorTest {
         // When
         calculator.sub(2);
         // Then
-        assertEquals(0, calculator.getValue());
+        assertEquals(-2, calculator.getValue());
         // : 단언 메소드가 실패할 경우, 이후의 코드가 수행되지 않는다.
         //   테스트 픽스쳐를 해체하는 작업을, 테스트 메소드에 직접 작성하는 것은 누수의 위험성이 존재한다.
 

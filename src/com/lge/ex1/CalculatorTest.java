@@ -38,6 +38,7 @@ import static org.junit.Assert.*;
 //  2) 유지보수성
 //  3) 신뢰성
 
+// public class CaculatorTest extends TestCase {
 public class CalculatorTest {
 
     @Test
