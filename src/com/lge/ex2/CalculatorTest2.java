@@ -8,6 +8,8 @@ package com.lge.ex2;
 
 import com.lge.ex1.Calculator;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -23,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 // @BeforeClass @AfterClass -> @BeforeAll, @AfterAll
 // @Ignore                  -> @Disabled
 
+@Execution(ExecutionMode.CONCURRENT)
 public class CalculatorTest2 {
     public CalculatorTest2() {
         System.out.println("CalculatorTest()");
@@ -79,12 +82,12 @@ public class CalculatorTest2 {
     }
 
     public static void slowJob() throws Exception {
-        TimeUnit.MILLISECONDS.sleep(1500);
+        TimeUnit.MICROSECONDS.sleep(150);
     }
 
     @Test
     public void timeoutTest() throws Exception {
-        assertTimeout(Duration.ofMillis(2000), () -> slowJob());
+        assertTimeout(Duration.ofNanos(200 * 1000), () -> slowJob());
     }
 
     // JUnit 5는 파라미터화 테스트를 별도의 TestSuite 클래스에서 작성할 필요가 없습니다.
@@ -97,6 +100,7 @@ public class CalculatorTest2 {
     @ParameterizedTest
     @MethodSource("getPrimeValues")
     public void isPrimeTest2(int primeValue, boolean result) throws Exception {
+        System.out.println(primeValue);
         assertTrue(Calculator.isPrime(primeValue));
     }
 
