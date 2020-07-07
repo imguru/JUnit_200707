@@ -1,6 +1,11 @@
 package com.lge.ex5;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,6 +15,57 @@ import static org.junit.Assert.assertTrue;
 // 정의: 입력 데이터를 바꿔가면서, 수차례 반복 검사하는 데이터 중심의 테스트에서 코드 중복을 없애주는 기법.
 
 // * 파라미터화 테스트를 작성하는 방법.
+// 1) TestRunner가 다릅니다.
+//   TestSuite - @RunWith(Parameterized.class)
+
+// 2) 데이터에 대한 정의가 필요합니다.
+//   static method - @Parameterized.Parameters
+
+// JUnit4 에서 TestSuite객체 생성할 때, Reflection의 기술을 이용합니다.
+// Reflection에서는 생성자의 인자를 Object[] 형태로 전달하고 있습니다.
+/*
+    ParamTest ts = new ParamTest({2});
+    ts.primeTest();
+
+    ParamTest ts = new ParamTest({3});
+    ts.primeTest();
+
+    ParamTest ts = new ParamTest({5});
+    ts.primeTest();
+
+    ...
+*/
+// 3) 생성자와 필드를 정의해서, runner에 의해서 전달되는 인자를 저장한다.
+// 4) testcase에서 필드를 통해 테스트를 수행하면 됩니다.
+
+
+@RunWith(Parameterized.class)
+public class ParamTest {
+    private int value;
+    public ParamTest(int value) {
+        this.value = value;
+    }
+
+
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+                {2},
+                {3},
+                {5},
+                {7},
+                {11},
+                {13},
+                {17},
+                {19},
+        });
+    }
+
+    @Test
+    public void primeTest1() throws Exception {
+        assertTrue(Utils.isPrime(value));
+    }
+}
 
 
 /*
