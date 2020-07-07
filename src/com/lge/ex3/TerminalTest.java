@@ -14,6 +14,11 @@ import static org.junit.Assert.*;
 // 어떻게 해결해야 할까요?
 // => Suite Fixture Setup / TearDown
 //  : xUnit Test Framework은 Test Suite 단위로 setUp() / tearDown() 할 수 있는 기능을 제공하고 있습니다.
+
+// => 이제는 '신선한 픽스쳐 전략' 이 아닌 '공유 픽스쳐의 전략' 입니다.
+//  : 공유되는 테스트 픽스쳐가 이전 테스트에 의해 망가질 경우, 이후의 테스트의 신뢰성이 보장될 수 없다. => '변덕스러운 테스트'
+//  - xUnit Test Pattern에서는 공유 픽스쳐의 전략을 사용할 경우, 하나의 TestSuite 안에서 너무 많은 TC가 존재하지 않도록 제어해야 한다.
+
 /*
 
 TestSuite setUp
