@@ -52,9 +52,11 @@ public class ParamTest {
     private int value;
     private boolean result;
 
+
     public ParamTest(int value, boolean result) {
         this.value = value;
         this.result = result;
+        System.out.println("ParamTest()" + value);
     }
 
     @Parameterized.Parameters(name = "{index}, value={0}")
