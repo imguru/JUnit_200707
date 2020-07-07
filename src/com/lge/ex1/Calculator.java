@@ -5,9 +5,9 @@ package com.lge.ex1;
 public class Calculator {
     private int value;
 
-    public Calculator() {
-        value = 0;
-    }
+//    public Calculator(int value) {
+//        value = value;
+//    }
 
     public void add(int a) {
         value += a;
@@ -18,7 +18,7 @@ public class Calculator {
     }
 
     public int getValue() {
-        return 0;
-        // return value;
+        // return 0;
+        return value;
     }
 }
