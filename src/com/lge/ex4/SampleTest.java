@@ -1,5 +1,6 @@
 package com.lge.ex4;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -8,11 +9,36 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.*;
 
 public class SampleTest {
+    // 5. 배열 비교
+    @Test
+    public void arrayTest() throws Exception {
+        String[] expected = {"Tom", "42"};
+        String[] actual = {"Bob", "42"};
+
+        // assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
+    }
+
+    // 4. 부동 소수점 비교
+    @Test
+    public void floatTest() throws Exception {
+        double expected = 0.7;
+        double actual = 1 * 0.7;
+
+        assertEquals(expected, actual, 0.0000001);
+    }
+
+
+    // 3. 테스트 비활성화
+    // : 테스트 코드를 비활성화하기 위해 주석 처리를 하는 것은 좋지 않다. - 잊혀진 테스트
+    // @Ignore
+
     // 2. 비기능 테스트(속도)
     //  : 기능적으로 잘 동작할 뿐 아니라, 테스트의 수행 시간에 대한 부분을 검증하는 작업
 
     // 아래의 테스트가 1초 안에 수행되어야 한다.
-    @Test(timeout = 1000)
+    // @Ignore
+    @Test(timeout = 2500)
     public void slowJobTest() throws Exception {
         SUT.slowJob();
     }
