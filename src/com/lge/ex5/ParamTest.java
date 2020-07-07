@@ -7,6 +7,7 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
@@ -38,32 +39,45 @@ import static org.junit.Assert.assertTrue;
 // 3) 생성자와 필드를 정의해서, runner에 의해서 전달되는 인자를 저장한다.
 // 4) testcase에서 필드를 통해 테스트를 수행하면 됩니다.
 
+// 주의점
+// 1) 복잡하다.
+//   - xUnit Test Framework 마다 제공하는 방법이 다르다.
+// 2) 테스트가 실패한 경우, 데이터가 무엇인지 알기 어렵다.
+//   - @Parameterized.Parameters(name = "{index}, value={0}")
+// 3) 파라미터화 테스트를 위해서는 별도의 Test Suite 클래스를 작성해야 한다.
+
 
 @RunWith(Parameterized.class)
 public class ParamTest {
     private int value;
-    public ParamTest(int value) {
+    private boolean result;
+
+    public ParamTest(int value, boolean result) {
         this.value = value;
+        this.result = result;
     }
 
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "{index}, value={0}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {2},
-                {3},
-                {5},
-                {7},
-                {11},
-                {13},
-                {17},
-                {19},
+                {2, true},
+                {3, true},
+                {5, true},
+                {7, true},
+                {11, true},
+                {13, true},
+                {17, true},
+                {19, true},
+                {10, false},
+                {15, false},
         });
     }
 
     @Test
     public void primeTest1() throws Exception {
-        assertTrue(Utils.isPrime(value));
+        // assertTrue(Utils.isPrime(value));
+        assertEquals(result, Utils.isPrime(value));
     }
 }
 
