@@ -41,6 +41,16 @@ import static org.junit.Assert.*;
 public class CalculatorTest {
 
     @Test
+    public void testSub() throws Exception {
+        // Given
+        Calculator calculator = new Calculator();
+        // When
+        calculator.sub(2);
+        // Then
+        assertEquals(-2, calculator.getValue());
+    }
+
+    @Test
     public void testFoo() throws Exception {
         Calculator calculator = new Calculator();
 
@@ -65,8 +75,8 @@ public class CalculatorTest {
     //     : 테스트 메소드 안에서 제어 구문(조건문, 반복문, 예외처리)의 발생을 최소화해야 한다.
     @Test
     public void add_2더하기2_결과는4() throws Exception {
-    // public void add_addingTwoPlusTwo_getValue_ReturnFour() throws Exception {
-    // public void testAdd() throws Exception {
+        // public void add_addingTwoPlusTwo_getValue_ReturnFour() throws Exception {
+        // public void testAdd() throws Exception {
         Calculator calculator = new Calculator();
 
         calculator.add(2);
@@ -79,7 +89,7 @@ public class CalculatorTest {
         */
         // xUnit Test Framework은 가정이 성립되었는지 여부를 검증하는 목적으로
         // Assertion 메소드를 제공해주고 있습니다.
-        assertEquals("2 + 2 하였을 때",4, calculator.getValue());
+        assertEquals("2 + 2 하였을 때", 4, calculator.getValue());
     }
 
 }
