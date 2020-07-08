@@ -16,7 +16,6 @@ class TestDouble implements IFileSystemManager {
     }
 }
 
-
 public class LoggerTest2 {
     private Logger logger;
     private TestDouble stubFileSystem;
