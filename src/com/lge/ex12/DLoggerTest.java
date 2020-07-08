@@ -26,7 +26,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.*;
 
-// Mockito를 이용하면, mock을 '동적'으로 생성할 수 있습니다.
+// 'Mockito'를 이용하면, mock을 '동적'으로 생성할 수 있습니다.
+// => Mock Framework은 행위기반 검증을 위한 모의 객체 뿐 아니라, Stub 등의 테스트 대역에서도 사용할 수
+//    있습니다.
 
 public class DLoggerTest {
     @Test
