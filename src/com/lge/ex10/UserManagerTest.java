@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -33,7 +34,8 @@ public class UserManagerTest {
         UserManager manager = new UserManager(fake);
         String testUserName = "TEST_USER";
         int testAge = 42;
-        User expected = new User(testUserName, testAge);
+        // User expected = new User(testUserName, testAge);
+        User expected = new User("Tom", testAge);
 
         manager.createUser(testUserName, testAge);
 
@@ -67,6 +69,10 @@ class UserManager {
     }
 }
 
+// 아래의 객체를 assertEquals 등의 메소드를 통해 검증하고자 할 때는,
+// 몇가지 기능을 제공해야 합니다.
+//  - equals
+//  - equals를 제공하면, 반드시 hashCode도 제공해야 한다.
 class User {
     private String name;
     private int age;
@@ -75,4 +81,50 @@ class User {
         this.name = name;
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+
+        // User의 자식 타입을 허용하지 않습니다.
+        /*
+        if (obj.getClass() != User.class) {
+            return false;
+        }
+        */
+
+        // User의 자식 타입을 허용한다.
+        if (!(obj instanceof User)) {
+            return false;
+        }
+
+        User u = (User) obj;
+        // return name != null && name.equals(u.name) && age == u.age;
+        return Objects.equals(name, u.name) && age == u.age;
+    }
 }
+
+
+
+
+
+
+
+
