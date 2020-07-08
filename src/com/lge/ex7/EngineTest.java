@@ -115,3 +115,11 @@ class Car {
         // engine.start();
     }
 }
+
+// Test Double - xUnit Test Pattern(제라드)
+// 1. Stub
+// 2. Fake
+// 3. Spy
+// 4. Mock
+//----------
+// 5. Dummy
