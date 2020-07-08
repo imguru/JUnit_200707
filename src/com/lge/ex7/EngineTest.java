@@ -1,8 +1,12 @@
 package com.lge.ex7;
 
 
+import com.lge.User;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // Test Specific Subclass Pattern(테스트 전용 하위 클래스)
@@ -27,6 +31,19 @@ class TestEngine extends Engine {
     }
 }
 
+// SUT의 확인하고자 하는 메소드나 상태가 protected일 때,
+// 테스트 전용 하위클래스를 통해 접근할 수 있습니다.
+class TestUser extends User {
+    @Override
+    public int getAge() {
+        return super.getAge();
+    }
+
+//    public int getN() {
+//        return n;
+//    }
+}
+
 public class EngineTest {
     @Test
     public void engineTest() {
@@ -49,7 +66,34 @@ public class EngineTest {
 
         // Engine에 대해서 assert 할만한 기능이 제공되고 있지 않다.
     }
+
+    @Test
+    public void ageTest() {
+        // User user = new User();
+        // assertEquals(42, user.age);
+        TestUser user = new TestUser();
+
+        assertEquals(42, user.getAge());
+    }
+
+    // 아래 처럼 작성하는 것은 테스트의 가독성과 유지보수성에 안 좋은 코드입니다.
+    @Test
+    public void nTest_bad() throws Exception {
+        User user = new User();
+        Class clazz = user.getClass();
+        Field field = clazz.getDeclaredField("n");
+        field.setAccessible(true);
+        int n = (int) field.get(user);
+
+        System.out.println(n);
+    }
+
 }
+
+
+//class User {
+//    protected int age = 42;
+//}
 
 
 //--------------
@@ -61,6 +105,7 @@ class Engine {
 
 class Car {
     private Engine engine;
+
     public Car(Engine engine) {
         this.engine = engine;
     }
