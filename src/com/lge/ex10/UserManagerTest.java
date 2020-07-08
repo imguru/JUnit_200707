@@ -12,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // 의도: SUT가 '아직 준비되지 않은 컴포넌트'에 의해 테스트 되지 않은 요구사항이 있다.
 // 방법: 아직 준비되지 않은 컴포넌트 대신하는 가벼운 테스트 대역을 만들어서, 검증을 수행한다.
 
+// 1) 아직 준비되지 않은 객체에 의존할 때
+// 2) 사용하기 어려운 객체에 의존할 때
+// 3) 의존하는 객체가 너무 느려서 느린 테스트의 문제가 발생할 때
+
+
 class FakeDatabase implements Database {
     private Map<String, User> data = new HashMap<>();
 
@@ -34,8 +39,8 @@ public class UserManagerTest {
         UserManager manager = new UserManager(fake);
         String testUserName = "TEST_USER";
         int testAge = 42;
-        // User expected = new User(testUserName, testAge);
-        User expected = new User("Tom", testAge);
+        User expected = new User(testUserName, testAge);
+        // User expected = new User("Tom", testAge);
 
         manager.createUser(testUserName, testAge);
 
