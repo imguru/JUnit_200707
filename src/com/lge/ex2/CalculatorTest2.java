@@ -25,21 +25,21 @@ import static org.junit.jupiter.api.Assertions.*;
 // @BeforeClass @AfterClass -> @BeforeAll, @AfterAll
 // @Ignore                  -> @Disabled
 
-@Execution(ExecutionMode.CONCURRENT)
-public class CalculatorTest2 {
-//    public CalculatorTest2() {
-//        System.out.println("CalculatorTest()");
-//    }
 
-//    @BeforeEach
-//    public void setUp() {
-//        System.out.println("setUp()");
-//    }
-//
-//    @AfterEach
-//    public void tearDown() {
-//        System.out.println("tearDonw()");
-//    }
+public class CalculatorTest2 {
+    public CalculatorTest2() {
+        System.out.println("CalculatorTest()");
+    }
+
+    @BeforeEach
+    public void setUp() {
+        System.out.println("setUp()");
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.out.println("tearDonw()");
+    }
 
     @BeforeAll
     public static void setUpTestSuite() {
@@ -95,6 +95,11 @@ public class CalculatorTest2 {
     @ValueSource(ints = {2, 3, 5, 7, 11, 13, 17})
     public void isPrimeTest(int primeValue) throws Exception {
         System.out.println(primeValue);
+
+        String s = "";
+        for (int i = 0; i < 100000; ++i)
+            s += i;
+
         assertTrue(Calculator.isPrime(primeValue));
     }
 

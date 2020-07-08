@@ -1,6 +1,7 @@
-package com.lge;
+package com.lge.concurrent;
 
 
+/*
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.parallel.Execution;
@@ -45,3 +46,4 @@ public class SampleTest {
         System.out.println(value);
     }
 }
+*/
