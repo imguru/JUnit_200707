@@ -21,7 +21,45 @@ package com.lge.ex12;
 //  C++: Google Mock
 
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.Mockito.*;
+
+// Mockito를 이용하면, mock을 '동적'으로 생성할 수 있습니다.
+
 public class DLoggerTest {
+    @Test
+    public void writeTest2() {
+        DLoggerTarget mock1 = mock(DLoggerTarget.class);
+        DLoggerTarget mock2 = mock(DLoggerTarget.class);
+        DLogger logger = new DLogger(mock1, mock2);
+
+        logger.write(Level.INFO, "test_message_info");
+        logger.write(Level.CRITICAL, "test_message_critical");
+
+        assertAll(
+                () -> verify(mock1).write(Level.INFO, "test_message_info"),
+                () -> verify(mock2).write(Level.INFO, "test_message_info"),
+                () -> verify(mock1).write(Level.CRITICAL, "test_message_critical"),
+                () -> verify(mock2).write(Level.CRITICAL, "test_message_critical")
+        );
+    }
+
+    @Test
+    public void writeTest() {
+        DLoggerTarget mock1 = mock(DLoggerTarget.class);
+        DLoggerTarget mock2 = mock(DLoggerTarget.class);
+        DLogger logger = new DLogger(mock1, mock2);
+
+        logger.write(Level.INFO, "test_message_info");
+        logger.write(Level.CRITICAL, "test_message_critical");
+
+        verify(mock1).write(Level.INFO, "test_message_info");
+        verify(mock2).write(Level.INFO, "test_message_info");
+        verify(mock1).write(Level.CRITICAL, "test_message_critical");
+        verify(mock2).write(Level.CRITICAL, "test_message_critical");
+    }
 }
 
 
@@ -43,7 +81,7 @@ class DLogger {
 
     public void write(Level level, String message) {
         for (DLoggerTarget e : targets) {
-            e.write(level, message);
+            // e.write(level, message);
         }
     }
 }
