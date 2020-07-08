@@ -73,6 +73,10 @@ class UserManager {
 // 몇가지 기능을 제공해야 합니다.
 //  - equals
 //  - equals를 제공하면, 반드시 hashCode도 제공해야 한다.
+
+// Data class
+//  - DTO, VO, DAO
+//  - @Lombok
 class User {
     private String name;
     private int age;
