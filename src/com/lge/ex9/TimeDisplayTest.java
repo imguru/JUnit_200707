@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 class StubTimeProvider implements TimeProvider {
     @Override
@@ -25,6 +26,19 @@ public class TimeDisplayTest {
     @Test
     public void getCurrentTimeAsStringTest() {
         StubTimeProvider stub = new StubTimeProvider();
+        TimeDisplay display = new TimeDisplay(stub);
+
+        assertEquals("Midnight", display.getCurrentTimeAsString());
+    }
+
+    @DisplayName("자정에 Midnight의 문자열이 제대로 발생하는지 여부를 검증하고 싶다.")
+    @Test
+    public void getCurrentTimeAsStringTest_mockito() {
+        Calendar midTime = new GregorianCalendar();
+        midTime.set(Calendar.HOUR_OF_DAY, 0);
+        midTime.set(Calendar.MINUTE, 0);
+        TimeProvider stub = mock(TimeProvider.class);
+        when(stub.getTime()).thenReturn(midTime);
         TimeDisplay display = new TimeDisplay(stub);
 
         assertEquals("Midnight", display.getCurrentTimeAsString());
