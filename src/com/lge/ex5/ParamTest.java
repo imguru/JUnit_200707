@@ -56,7 +56,6 @@ public class ParamTest {
     public ParamTest(int value, boolean result) {
         this.value = value;
         this.result = result;
-        System.out.println("ParamTest()" + value);
     }
 
     @Parameterized.Parameters(name = "{index}, value={0}")
@@ -78,6 +77,7 @@ public class ParamTest {
     @Test
     public void primeTest1() throws Exception {
         // assertTrue(Utils.isPrime(value));
+        System.out.println(value);
         assertEquals(result, Utils.isPrime(value));
     }
 }

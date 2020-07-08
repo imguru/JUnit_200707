@@ -27,19 +27,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Execution(ExecutionMode.CONCURRENT)
 public class CalculatorTest2 {
-    public CalculatorTest2() {
-        System.out.println("CalculatorTest()");
-    }
+//    public CalculatorTest2() {
+//        System.out.println("CalculatorTest()");
+//    }
 
-    @BeforeEach
-    public void setUp() {
-        System.out.println("setUp()");
-    }
-
-    @AfterEach
-    public void tearDown() {
-        System.out.println("tearDonw()");
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        System.out.println("setUp()");
+//    }
+//
+//    @AfterEach
+//    public void tearDown() {
+//        System.out.println("tearDonw()");
+//    }
 
     @BeforeAll
     public static void setUpTestSuite() {
@@ -94,6 +94,7 @@ public class CalculatorTest2 {
     @ParameterizedTest
     @ValueSource(ints = {2, 3, 5, 7, 11, 13, 17})
     public void isPrimeTest(int primeValue) throws Exception {
+        System.out.println(primeValue);
         assertTrue(Calculator.isPrime(primeValue));
     }
 
