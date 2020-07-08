@@ -38,7 +38,7 @@ public class CalculatorTest2 {
 
     @AfterEach
     public void tearDown() {
-        System.out.println("tearDonw()");
+        System.out.println("tearDown()");
     }
 
     @BeforeAll
@@ -119,6 +119,29 @@ public class CalculatorTest2 {
                 Arguments.of(11, true),
                 Arguments.of(13, true),
                 Arguments.of(17, true));
+    }
+
+    // Google Test
+    //  ASSERT_EQ가 실패할 경우, 이후의 코드가 수행되지 않는다.
+    //  EXPECT_ 계열의 단언 매크로를 사용하면, 이후의 코드는 수행된다.
+    // => 죽은 단언문의 문제를 해결할 수 있다.
+
+    // JUnit 5
+    //  : assertAll
+    //  - 여러개의 단언 메소드를 수행하였을 때, '죽은 단언문'의 문제를 해결할 수 있다.
+
+    @Test
+    public void sampleTest() throws Exception {
+
+        assertAll("Numbers",
+                () -> assertEquals(20, 20, "reason 1"),
+                () -> assertEquals(20, 20, "reason 2"),
+                () -> assertEquals(20, 20, "reason 3")
+                );
+
+//        assertEquals(10, 20, "reason 1");
+//        assertEquals(10, 20, "reason 2");
+//        assertEquals(10, 20, "reason 3");
     }
 
 
