@@ -30,7 +30,6 @@ public class PlayerTest {
         assertThrows(NetworkException.class, () -> player.move(10, 20));
     }
 
-
     @DisplayName("move에서 IOException 발생하였을 때, NetworkException이 발생하는지 여부를 검증하고 싶다.")
     @Test
     public void moveTest_bad() throws Exception {
