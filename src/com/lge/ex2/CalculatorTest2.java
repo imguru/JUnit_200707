@@ -20,12 +20,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
 
 // @Before, @After          -> @BeforeEach, @AfterEach
 // @BeforeClass @AfterClass -> @BeforeAll, @AfterAll
 // @Ignore                  -> @Disabled
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CalculatorTest2 {
     public CalculatorTest2() {
         System.out.println("CalculatorTest()");
@@ -63,7 +64,7 @@ public class CalculatorTest2 {
         assertEquals(4, calculator.getValue(), "2 + 2 했을 때");
     }
 
-    @Disabled
+    // @Disabled
     @Test
     public void subTest() {
         System.out.println("subTest()");
@@ -95,11 +96,6 @@ public class CalculatorTest2 {
     @ValueSource(ints = {2, 3, 5, 7, 11, 13, 17})
     public void isPrimeTest(int primeValue) throws Exception {
         System.out.println(primeValue);
-
-        String s = "";
-        for (int i = 0; i < 100000; ++i)
-            s += i;
-
         assertTrue(Calculator.isPrime(primeValue));
     }
 
@@ -130,7 +126,7 @@ public class CalculatorTest2 {
     //  : assertAll
     //  - 여러개의 단언 메소드를 수행하였을 때, '죽은 단언문'의 문제를 해결할 수 있다.
 
-    @Test
+    @RepeatedTest(42)
     public void sampleTest() throws Exception {
 
         assertAll("Numbers",
@@ -142,6 +138,18 @@ public class CalculatorTest2 {
 //        assertEquals(10, 20, "reason 1");
 //        assertEquals(10, 20, "reason 2");
 //        assertEquals(10, 20, "reason 3");
+    }
+
+    // 전제조건이 성립되지 않으면, 테스트를 수행하지 않아야 한다.
+    // => Assumptions
+    //   : 조건이 성립되지 않으면, 테스트는 수행되지 않는다.
+    //   JUnit의 고유의 기능입니다.
+
+    @Test
+    public void fooTest() {
+        // assumeTrue(5 < 1);
+
+        assertEquals(40, 10 + 20, "Reason foo");
     }
 
 
